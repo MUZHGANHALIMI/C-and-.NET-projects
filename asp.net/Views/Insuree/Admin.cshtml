@@ -1,0 +1,35 @@
+@model IEnumerable<CarInsurance.Models.Insuree>
+
+@{
+    ViewBag.Title = "Admin - All Quotes";
+}
+
+<h2>Admin - All Quotes</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Date of Birth</th>
+            <th>Car Make</th>
+            <th>Car Model</th>
+            <th>Quote ($)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var insuree in Model)
+        {
+            <tr>
+                <td>@insuree.FirstName</td>
+                <td>@insuree.LastName</td>
+                <td>@insuree.EmailAddress</td>
+                <td>@insuree.DateOfBirth.ToShortDateString()</td>
+                <td>@insuree.CarMake</td>
+                <td>@insuree.CarModel</td>
+                <td>@String.Format("{0:C}", insuree.Quote)</td>
+            </tr>
+        }
+    </tbody>
+</table>
