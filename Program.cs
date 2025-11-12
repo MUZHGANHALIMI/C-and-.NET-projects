@@ -1,33 +1,21 @@
 using System;
-using EFCodeFirstStudent.Data;
-using EFCodeFirstStudent.Models;
 
-namespace EFCodeFirstStudent
+namespace MathOperationApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            using (var context = new StudentContext())
-            {
-                // Create database if it doesn't exist
-                context.Database.EnsureCreated();
+            // Instantiate (create) an object of the MathOperations class
+            MathOperations mathOps = new MathOperations();
 
-                // Create and add one student
-                var student = new Student
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    EnrollmentDate = DateTime.Now
-                };
+            // Call the method by passing in two integers (positional arguments)
+            mathOps.PerformOperation(10, 5);
 
-                context.Students.Add(student);
-                context.SaveChanges();
+            // Call the method again, this time specifying parameters by name
+            mathOps.PerformOperation(number1: 20, number2: 8);
 
-                Console.WriteLine("✅ Student added successfully!");
-                Console.WriteLine($"ID: {student.StudentId}, Name: {student.FirstName} {student.LastName}");
-            }
-
+            // Wait for user input before closing the console
             Console.ReadLine();
         }
     }
